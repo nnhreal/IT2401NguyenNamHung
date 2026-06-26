@@ -5,6 +5,11 @@
 package com.dht.quizappv1;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 
@@ -20,7 +25,30 @@ public class QuestionsController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        try {
+//            // b1 nap driver
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+            
+            //b2 mo ket noi
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/quizdb", "root", "root");
+            
+            //b3 thuc thi truy van
+            String sql = "SELECT * FROM category";
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery(sql);
+            while (rs .next()){
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                
+                System.err.printf("%d - %s\n", id, name);
+            }
+            
+            //b4 dong ket noi
+            conn.close();
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }    
     
 }
