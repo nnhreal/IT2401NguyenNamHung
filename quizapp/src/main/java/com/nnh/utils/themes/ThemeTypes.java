@@ -4,18 +4,32 @@
  */
 package com.nnh.utils.themes;
 
+import javafx.scene.Scene;
+
 /**
  *
  * @author admin
  */
-public class ThemeTypes {
-
-    public static void Values() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public static void Values() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+public enum ThemeTypes {
+    DEFAULT {
+        @Override
+        public void updateTheme(Scene scene) {
+            ThemeManager.setFactory(new DefaultFactory());
+            ThemeManager.applyTheme(scene);
+        }
+    }, DARK {
+        @Override
+        public void updateTheme(Scene scene) {
+            ThemeManager.setFactory(new DarkFactory());
+            ThemeManager.applyTheme(scene);
+        }
+    }, LIGHT {
+        @Override
+        public void updateTheme(Scene scene) {
+            ThemeManager.setFactory(new LightFactory());
+            ThemeManager.applyTheme(scene);
+        }
+    };
     
+    public abstract void updateTheme(Scene scene);
 }

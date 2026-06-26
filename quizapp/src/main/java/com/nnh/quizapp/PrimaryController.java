@@ -1,6 +1,10 @@
 package com.nnh.quizapp;
 
-import com.nnh.utils.MySingleton;
+import com.nnh.utils.MyAlertSingleton;
+import com.nnh.utils.MyStageSingleton;
+import com.nnh.utils.themes.DarkFactory;
+import com.nnh.utils.themes.LightFactory;
+import com.nnh.utils.themes.ThemeManager;
 import com.nnh.utils.themes.ThemeTypes;
 import java.io.IOException;
 import java.net.URL;
@@ -8,8 +12,12 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.stage.Stage;
+
 
 public class PrimaryController implements Initializable {
     @FXML private ComboBox<ThemeTypes> cbThemes;
@@ -19,17 +27,20 @@ public class PrimaryController implements Initializable {
         this.cbThemes.setItems(FXCollections.observableArrayList(ThemeTypes.values()));
     }
     
-    public void QuanLyCauHoi(ActionEvent e){
-        MySingleton.getInstance().showMsg("Coming soon...");
+    public void manageQuestions(ActionEvent e) {
+        MyStageSingleton.getInstance().showStage("questions");
+      
     }
     
-    public void LuyenTap(ActionEvent e){
-        MySingleton.getInstance().showMsg("Coming soon...");
+    public void practice(ActionEvent e) {
+        MyAlertSingleton.getInstance().showMsg("Comming soon...");
     }
     
-    public void LuyenThi(ActionEvent e){
-      MySingleton.getInstance().showMsg("Coming soon...");
-  }
-
-  
+    public void exam(ActionEvent e) {
+        MyAlertSingleton.getInstance().showMsg("Comming soon...");
+    }
+    
+    public void changeTheme(ActionEvent e) {
+        this.cbThemes.getSelectionModel().getSelectedItem().updateTheme(this.cbThemes.getScene());
+    }
 }

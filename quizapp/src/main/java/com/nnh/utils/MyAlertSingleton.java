@@ -12,19 +12,20 @@ import javafx.scene.control.Alert;
  *
  * @author admin
  */
-public class MySingleton {
-    private static MySingleton instance;
+public class MyAlertSingleton {
+    private static MyAlertSingleton instance;
     private final Alert alert;
     
-    private MySingleton(){
+    private MyAlertSingleton(){
         this.alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("English Quiz App");
-        alert.setHeaderText("Thong bao");
+        alert.setTitle("quizapp");
+        alert.setHeaderText("quizapp");
         }
     
-    public static MySingleton getInstance(){
+    public static MyAlertSingleton getInstance(){
         if(instance == null)
-            instance = new MySingleton();
+            instance = new MyAlertSingleton();
+        
         return instance;
     }
     
